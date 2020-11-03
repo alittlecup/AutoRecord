@@ -1,25 +1,27 @@
 package com.hbl.recordactivity
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
 class MainVM : ViewModel() {
-    public var userInfos = MutableLiveData<List<UserInfo>>()
+    val userInfos: MediatorLiveData<List<UserInfo>> = MediatorLiveData()
 
     init {
         viewModelScope.launch {
-            userInfos.value = UserService.getAllUserInfo()
+            var allUserInfo = UserService.getAllUserInfo()
+            userInfos.addSource(allUserInfo, Observer { userInfos.value = it })
         }
     }
 
     fun saveUserInfo(userInfo: UserInfo) {
         viewModelScope.launch {
             UserService.saveUserInfo(userInfo)
-            var userInfo = UserService.getAllUserInfo()
-            userInfos.value = userInfo
+        }
+    }
 
+    fun userLogin(userInfo: UserInfo) {
+        viewModelScope.launch {
+            UserService.login(userInfo)
         }
     }
 

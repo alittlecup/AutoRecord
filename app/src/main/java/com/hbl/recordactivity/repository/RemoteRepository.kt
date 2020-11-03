@@ -1,6 +1,6 @@
 package com.hbl.recordactivity.repository
 
-import com.idealabs.photoeditor.repository.network.FlowCallAdapterFactory
+import com.hbl.recordactivity.HeaderInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,8 +8,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import javax.inject.Singleton
 
 object RemoteRepository {
     const val baseUrl = "https://app.bupt.edu.cn/"
@@ -28,11 +26,11 @@ object RemoteRepository {
             .readTimeout(30L, TimeUnit.SECONDS)
             .writeTimeout(30L, TimeUnit.SECONDS)
             .addInterceptor(httpLogInterceptor)
+            .addNetworkInterceptor(HeaderInterceptor())
             .build()
 
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addCallAdapterFactory(FlowCallAdapterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())

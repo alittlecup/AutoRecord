@@ -1,5 +1,6 @@
 package com.hbl.recordactivity
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -13,7 +14,7 @@ data class UserInfo(
     @ColumnInfo(name = "schoolnum")
     val schoolNum: String,
     @ColumnInfo(name = "passward")
-    val passward: String,
+    val password: String,
 
     @ColumnInfo(name = "eaisess")
     var eaiSess: String = "",
@@ -25,6 +26,9 @@ data class UserInfo(
 
     @ColumnInfo(name = "uukeyTime")
     var uukeyTime: String = "",
+
+    @ColumnInfo(name = "clockDay")
+    var clockDay: String = ""
 ) {
     fun isLogin(): Boolean {
         if (eaiSess.isEmpty() || uukey.isEmpty()) {
@@ -40,11 +44,21 @@ data class UserInfo(
 
     }
 
+    fun todayClock(): Boolean {
+        if (clockDay.isEmpty()) {
+            return false
+        }
+        var now = LocalDate.now()
+        if (clockDay == now.toString())
+            return true
+        return false
+    }
+
+    //Wed, 03-Nov-2021 12:25:45 GMT
     private fun formatTime(time: String): LocalDate {
-        var day: String = time.split("T")[0]
         val formatter: DateTimeFormatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.CHINA)
-        return LocalDate.parse(day, formatter)
+            DateTimeFormatter.ofPattern("EEE, dd-MMM-yyyy HH:mm:ss zzz", Locale.ENGLISH)
+        return LocalDate.parse(time, formatter)
     }
 
     private fun isOutOfToday(time: String): Boolean {
@@ -57,7 +71,7 @@ data class UserInfo(
 @Dao
 interface UserDao {
     @Query("Select * From UserInfo")
-    fun getAll(): List<UserInfo>
+    fun getAll(): LiveData<List<UserInfo>>
 
     @Query("select * from UserInfo where name =:name")
     fun findByName(name: String): UserInfo
@@ -66,7 +80,7 @@ interface UserDao {
     fun deleteByName(name: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUserINfo(userInfo: UserInfo)
+    fun insertUserInfo(userInfo: UserInfo)
 }
 
 @Database(entities = [UserInfo::class], version = 1)

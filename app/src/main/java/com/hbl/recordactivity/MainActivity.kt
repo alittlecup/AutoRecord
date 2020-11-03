@@ -28,8 +28,26 @@ class MainActivity : AppCompatActivity() {
                 adapter.userInfo = it
                 adapter.notifyDataSetChanged()
             }
-
         })
+        adapter.onClickListener = object : UserInfoAdapter.OnClickListener {
+            override fun onLoginClick(position: Int) {
+                var userInfo = mainVM.userInfos.value?.get(position)
+                if (userInfo != null) {
+                    if (!userInfo.isLogin()) {
+                        mainVM.userLogin(userInfo)
+                    }
+                }
+            }
+
+            override fun onClockClick(position: Int) {
+
+            }
+
+            override fun onItemClick(position: Int) {
+
+            }
+
+        }
         initRecyclerView()
     }
 

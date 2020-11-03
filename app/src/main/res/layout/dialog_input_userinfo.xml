@@ -36,7 +36,6 @@
             android:id="@+id/name_edit"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/left_barrier"
             app:layout_constraintTop_toTopOf="@id/name_label" />
