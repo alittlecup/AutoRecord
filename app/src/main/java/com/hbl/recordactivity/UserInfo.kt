@@ -44,6 +44,10 @@ data class UserInfo(
 
     }
 
+    fun getCookie(): String {
+        return "eai-sess=${eaiSess}; UUkey=${uukey}"
+    }
+
     fun todayClock(): Boolean {
         if (clockDay.isEmpty()) {
             return false

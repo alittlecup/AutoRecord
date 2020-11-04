@@ -1,18 +1,19 @@
 package com.hbl.recordactivity
 
-import kotlinx.coroutines.flow.Flow
-import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ClockInService {
 
     @GET("ncov/wap/default/index")
-    suspend fun loadCurrentUserInfo(): Response<String>
+    suspend fun loadCurrentUserInfo(@Header("Cookie") cookie: String): Response<String>
 
     @POST("ncov/wap/default/save")
-    suspend fun clockInRemote(@Body jsonObject: JSONObject): Response<String>
+    @FormUrlEncoded
+    suspend fun clockInRemote(
+        @FieldMap map: Map<String, @JvmSuppressWildcards Any>,
+        @Header("Cookie") cookie: String
+    ): Response<String>
 
     @POST("uc/wap/login/check")
     @FormUrlEncoded

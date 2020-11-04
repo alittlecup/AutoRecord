@@ -7,8 +7,10 @@ import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hbl.recordactivity.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var mBinding: ActivityMainBinding
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 mBinding.tvEmpty.visibility = View.INVISIBLE
                 adapter.userInfo = it
                 adapter.notifyDataSetChanged()
+                autoClock(it)
             }
         })
         adapter.onClickListener = object : UserInfoAdapter.OnClickListener {
@@ -40,7 +43,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onClockClick(position: Int) {
-
+                var userInfo = mainVM.userInfos.value?.get(position)
+                if (userInfo != null) {
+                    if (!userInfo.isLogin()) {
+                        mainVM.userLogin(userInfo)
+                    } else {
+                        mainVM.postClock(userInfo)
+                    }
+                }
             }
 
             override fun onItemClick(position: Int) {
@@ -49,6 +59,21 @@ class MainActivity : AppCompatActivity() {
 
         }
         initRecyclerView()
+    }
+
+    private fun autoClock(userInfo: List<UserInfo>) {
+        userInfo.forEach {
+            if (it.isLogin()) {
+                if (!it.todayClock()) {
+                    mainVM.postClock(it)
+                }
+            } else {
+                lifecycleScope.launch {
+                    mainVM.userLogin(it)
+                }
+            }
+        }
+
     }
 
     private fun initRecyclerView() {

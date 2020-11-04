@@ -25,4 +25,10 @@ class MainVM : ViewModel() {
         }
     }
 
+    fun postClock(userInfo: UserInfo) {
+        viewModelScope.launch {
+            UserService.postClockRemote(userInfo)
+        }
+    }
+
 }

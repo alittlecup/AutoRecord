@@ -1,0 +1,122 @@
+{
+  "jhfjrq": "",
+  "jhfjjtgj": "",
+  "jhfjhbcc": "",
+  "szgj": "",
+  "szcs": "",
+  "zgfxdq": "0",
+  "mjry": "0",
+  "csmjry": "0",
+  "tw": "2",
+  "sfcxtz": "0",
+  "sfjcbh": "0",
+  "sfcxzysx": "0",
+  "qksm": "",
+  "sfyyjc": 0,
+  "jcjgqr": "0",
+  "remark": "",
+  "address": "北京市朝阳区南磨房镇沿海赛洛城",
+  "area": "北京市  朝阳区",
+  "province": "北京市",
+  "city": "北京市",
+  "sfzx": "0",
+  "sfjcwhry": "0",
+  "sfjchbry": "0",
+  "sfcyglq": "0",
+  "gllx": "",
+  "glksrq": "",
+  "jcbhlx": "",
+  "jcbhrq": "",
+  "bztcyy": "",
+  "sftjhb": "0",
+  "sftjwh": "0",
+  "sfsfbh": "0",
+  "xjzd": "",
+  "jcwhryfs": "",
+  "jchbryfs": "",
+  "szsqsfybl": 0,
+  "sfygtjzzfj": 0,
+  "gtjzzfjsj": "",
+  "jcjg": "",
+  "date": "20201103",
+  "uid": "48898",
+  "created": 1604365192,
+  "jcqzrq": "",
+  "sfjcqz": "",
+  "sfsqhzjkk": 0,
+  "sqhzjkkys": "",
+  "id": 7502138,
+  "gwszdd": "",
+  "sfyqjzgc": "",
+  "jrsfqzys": "",
+  "jrsfqzfy": "",
+  "ismoved": 0,
+  "sfxk": 0,
+  "xkqq": "",
+  "geo_api_info": {
+    "type": "complete",
+    "position": {
+      "Q": 39.895874294705,
+      "R": 116.50323133680598,
+      "lng": 116.503231,
+      "lat": 39.895874
+    },
+    "location_type": "html5",
+    "message": "Get geolocation success.Convert Success.Get address success.",
+    "accuracy": 20,
+    "isConverted": true,
+    "status": 1,
+    "addressComponent": {
+      "citycode": "010",
+      "adcode": "110105",
+      "businessAreas": [
+        {
+          "name": "百子湾",
+          "id": "110105",
+          "location": {
+            "Q": 39.894565,
+            "R": 116.490882,
+            "lng": 116.490882,
+            "lat": 39.894565
+          }
+        },
+        {
+          "name": "南磨房",
+          "id": "110105",
+          "location": {
+            "Q": 39.883719,
+            "R": 116.47472800000003,
+            "lng": 116.474728,
+            "lat": 39.883719
+          }
+        },
+        {
+          "name": "高碑店村",
+          "id": "110105",
+          "location": {
+            "Q": 39.899875,
+            "R": 116.53148399999998,
+            "lng": 116.531484,
+            "lat": 39.899875
+          }
+        }
+      ],
+      "neighborhoodType": "商务住宅;住宅区;住宅小区",
+      "neighborhood": "沿海赛洛城",
+      "building": "",
+      "buildingType": "",
+      "street": "广渠路",
+      "streetNumber": "25号",
+      "country": "中国",
+      "province": "北京市",
+      "city": "",
+      "district": "朝阳区",
+      "township": "南磨房镇"
+    },
+    "formattedAddress": "北京市朝阳区南磨房镇沿海赛洛城",
+    "roads": [],
+    "crosses": [],
+    "pois": [],
+    "info": "SUCCESS"
+  }
+}
