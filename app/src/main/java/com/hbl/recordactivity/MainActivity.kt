@@ -2,6 +2,7 @@ package com.hbl.recordactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.viewModels
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.fab.setOnClickListener {
             addUserInfo()
         }
-        mainVM.userInfos.observe(this, Observer {
+        mainVM.userInfos.observeForever(Observer {
             if (it.isNullOrEmpty()) {
                 mBinding.tvEmpty.visibility = View.VISIBLE
             } else {
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
                 autoClock(it)
             }
+            Log.d("MainActivity", "onCreate: ")
         })
         adapter.onClickListener = object : UserInfoAdapter.OnClickListener {
             override fun onLoginClick(position: Int) {
